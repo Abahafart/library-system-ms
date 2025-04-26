@@ -11,7 +11,7 @@ public class BookDO {
   private String publisher;
   private String language;
   private int numberOfPages;
-  private AuthorDO author;
+  private long author;
   private Instant createdAt;
   private Instant updatedAt;
   private int version;
@@ -89,11 +89,11 @@ public class BookDO {
     this.numberOfPages = numberOfPages;
   }
 
-  public AuthorDO getAuthor() {
+  public long getAuthor() {
     return author;
   }
 
-  public void setAuthor(AuthorDO author) {
+  public void setAuthor(long author) {
     this.author = author;
   }
 

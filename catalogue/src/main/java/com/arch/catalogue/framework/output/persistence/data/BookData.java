@@ -18,7 +18,7 @@ public class BookData {
   private String publisher;
   private String language;
   private int numberOfPages;
-  private long author;
+  private long author_id;
   @CreatedDate
   private Instant createdAt;
   @LastModifiedDate
@@ -81,12 +81,12 @@ public class BookData {
     this.numberOfPages = numberOfPages;
   }
 
-  public long getAuthor() {
-    return author;
+  public long getAuthor_id() {
+    return author_id;
   }
 
-  public void setAuthor(long author) {
-    this.author = author;
+  public void setAuthor_id(long author_id) {
+    this.author_id = author_id;
   }
 
   public Instant getCreatedAt() {

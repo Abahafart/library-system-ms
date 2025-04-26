@@ -41,7 +41,7 @@ public class BookFileAdapter implements BookFile {
       bookData.setSubject(faker.book().title());
       bookData.setNumberOfPages(faker.number().numberBetween(1, 1000));
       bookData.setPublisher(faker.book().publisher());
-      bookData.setAuthor(authors.get(count).getAuthorId());
+      bookData.setAuthor_id(authors.get(count).getAuthorId());
       bookRepository.save(bookData);
       count++;
     }
