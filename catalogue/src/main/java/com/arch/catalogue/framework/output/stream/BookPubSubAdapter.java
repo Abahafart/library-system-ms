@@ -1,0 +1,31 @@
+package com.arch.catalogue.framework.output.stream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
+
+import com.arch.catalogue.application.ports.output.BookStreamManagement;
+import com.arch.catalogue.domain.BookDO;
+
+@Component
+public class BookPubSubAdapter implements BookStreamManagement {
+
+  private static final Logger log = LoggerFactory.getLogger(BookPubSubAdapter.class);
+  private final StreamBridge streamBridge;
+  private static final String NEW_BOOK = "book-library-store";
+
+  public BookPubSubAdapter(StreamBridge streamBridge) {
+    this.streamBridge = streamBridge;
+  }
+
+  @Override
+  public void notificationNewBook(BookDO bookDO) {
+    Message<BookDO> message = MessageBuilder.withPayload(bookDO).build();
+    log.info("Information to send : {}", NEW_BOOK);
+    streamBridge.send(NEW_BOOK, message);
+    log.info("New Book sent : {}", NEW_BOOK);
+  }
+}
