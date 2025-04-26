@@ -1,0 +1,28 @@
+services:
+
+  inventory:
+    image: postgres:16.2-alpine3.19
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=inventory
+    ports:
+      - "14001:5432"
+  catalogue:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=catalogue
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "14002:3306"
+  users:
+    image: mongo:7.0
+    container_name: users_mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=users
+    ports:
+      - "27017:27017"
