@@ -22,6 +22,7 @@ public class BookData {
     private Instant createdAt;
     private Instant updatedAt;
     private Integer version;
+    private int items;
 
     // Getters and setters
     public Long getBookId() { return bookId; }
@@ -46,4 +47,12 @@ public class BookData {
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
     public Integer getVersion() { return version; }
     public void setVersion(Integer version) { this.version = version; }
+
+    public int getItems() {
+        return items;
+    }
+
+    public void setItems(int items) {
+        this.items = items;
+    }
 }

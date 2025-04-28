@@ -1,7 +1,11 @@
 package com.arch.catalogue.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+
+import com.arch.catalogue.domain.enums.BOOK_FORMAT;
 
 public class BookDO implements Serializable {
 
@@ -16,6 +20,12 @@ public class BookDO implements Serializable {
   private Instant createdAt;
   private Instant updatedAt;
   private int version;
+  private int items;
+  private BOOK_FORMAT format;
+  private String barcode;
+  private BigDecimal price;
+  private LocalDate publicationDate;
+  private LocalDate purchaseDate;
 
   public Long getBookId() {
     return bookId;
@@ -105,6 +115,54 @@ public class BookDO implements Serializable {
     this.version = version;
   }
 
+  public int getItems() {
+    return items;
+  }
+
+  public void setItems(int items) {
+    this.items = items;
+  }
+
+  public BOOK_FORMAT getFormat() {
+    return format;
+  }
+
+  public void setFormat(BOOK_FORMAT format) {
+    this.format = format;
+  }
+
+  public String getBarcode() {
+    return barcode;
+  }
+
+  public void setBarcode(String barcode) {
+    this.barcode = barcode;
+  }
+
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
+
+  public LocalDate getPublicationDate() {
+    return publicationDate;
+  }
+
+  public void setPublicationDate(LocalDate publicationDate) {
+    this.publicationDate = publicationDate;
+  }
+
+  public LocalDate getPurchaseDate() {
+    return purchaseDate;
+  }
+
+  public void setPurchaseDate(LocalDate purchaseDate) {
+    this.purchaseDate = purchaseDate;
+  }
+
   @Override
   public String toString() {
     return "BookDO {" +
@@ -119,6 +177,12 @@ public class BookDO implements Serializable {
         ", createdAt=" + createdAt +
         ", updatedAt=" + updatedAt +
         ", version=" + version +
+        ", items=" + items +
+        ", format=" + format +
+        ", barcode=" + barcode +
+        ", price=" + price +
+        ", publicationDate=" + publicationDate +
+        ", purchaseDate=" + purchaseDate +
         '}';
   }
 }

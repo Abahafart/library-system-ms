@@ -1,6 +1,10 @@
 package com.arch.catalogue.domain.rest.request;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import com.arch.catalogue.domain.enums.BOOK_FORMAT;
 
 public class BookRequest implements Serializable {
 
@@ -12,6 +16,11 @@ public class BookRequest implements Serializable {
   private int numberOfPages;
   private long authorId;
   private int items;
+  private BOOK_FORMAT format;
+  private String barcode;
+  private BigDecimal price;
+  private LocalDate publicationDate;
+  private LocalDate purchaseDate;
 
   @Override
   public String toString() {
@@ -24,6 +33,11 @@ public class BookRequest implements Serializable {
         ", numberOfPages=" + numberOfPages +
         ", authorId=" + authorId +
         ", items=" + items +
+        ", format=" + format +
+        ", barcode=" + barcode +
+        ", price=" + price +
+        ", publicationDate=" + publicationDate +
+        ", purchaseDate=" + purchaseDate +
         '}';
   }
 
@@ -89,5 +103,45 @@ public class BookRequest implements Serializable {
 
   public void setItems(int items) {
     this.items = items;
+  }
+
+  public BOOK_FORMAT getFormat() {
+    return format;
+  }
+
+  public void setFormat(BOOK_FORMAT format) {
+    this.format = format;
+  }
+
+  public String getBarcode() {
+    return barcode;
+  }
+
+  public void setBarcode(String barcode) {
+    this.barcode = barcode;
+  }
+
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
+
+  public LocalDate getPublicationDate() {
+    return publicationDate;
+  }
+
+  public void setPublicationDate(LocalDate publicationDate) {
+    this.publicationDate = publicationDate;
+  }
+
+  public LocalDate getPurchaseDate() {
+    return purchaseDate;
+  }
+
+  public void setPurchaseDate(LocalDate purchaseDate) {
+    this.purchaseDate = purchaseDate;
   }
 }

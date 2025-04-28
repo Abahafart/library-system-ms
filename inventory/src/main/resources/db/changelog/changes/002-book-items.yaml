@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01
+      author: "Alfredo Miranda"
+      changes:
+        - createTable:
+            tableName: book_items
+            columns:
+              - column:
+                  name: book_item_id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_book_item_id
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: barcode
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: borrowed
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date
+                  type: DATE
+              - column:
+                  name: price
+                  type: DECIMAL(19,2)
+              - column:
+                  name: book_format
+                  type: VARCHAR(100)
+              - column:
+                  name: status
+                  type: VARCHAR(100)
+              - column:
+                  name: purchase_date
+                  type: DATE
+              - column:
+                  name: publication_date
+                  type: DATE
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+              - column:
+                  name: version
+                  type: INTEGER
