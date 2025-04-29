@@ -3,6 +3,7 @@ package com.arch.catalogue.framework.input.rest;
 import static com.arch.catalogue.domain.constant.InformationParams.ISBN;
 import static com.arch.catalogue.domain.constant.InformationParams.TITLE;
 
+import com.arch.commons.domain.BookDO;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arch.catalogue.application.usecases.BookManagement;
-import com.arch.catalogue.domain.BookDO;
 import com.arch.catalogue.domain.rest.request.BookRequest;
 import com.arch.catalogue.domain.rest.response.AuthorResponse;
 import com.arch.catalogue.domain.rest.response.BookResponse;

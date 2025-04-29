@@ -4,7 +4,6 @@ import static com.arch.catalogue.domain.constant.Information.BOOK_NOT_FOUND_BY_I
 import static com.arch.catalogue.domain.constant.Information.BOOK_NOT_FOUND_BY_ISBN;
 import static com.arch.catalogue.domain.constant.Information.BOOK_NOT_FOUND_BY_TITLE;
 
-import com.arch.commons.domain.BookDO;
 import org.springframework.stereotype.Repository;
 
 import com.arch.catalogue.application.ports.output.BookPersistenceManagement;

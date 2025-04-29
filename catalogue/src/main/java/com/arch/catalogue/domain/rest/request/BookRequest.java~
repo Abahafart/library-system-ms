@@ -1,25 +1,20 @@
-package com.arch.catalogue.domain;
+package com.arch.catalogue.domain.rest.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
 
 import com.arch.catalogue.domain.enums.BOOK_FORMAT;
 
-public class BookDO implements Serializable {
+public class BookRequest implements Serializable {
 
-  private Long bookId;
   private String title;
   private String isbn;
   private String subject;
   private String publisher;
   private String language;
   private int numberOfPages;
-  private long author;
-  private Instant createdAt;
-  private Instant updatedAt;
-  private int version;
+  private long authorId;
   private int items;
   private BOOK_FORMAT format;
   private String barcode;
@@ -27,12 +22,23 @@ public class BookDO implements Serializable {
   private LocalDate publicationDate;
   private LocalDate purchaseDate;
 
-  public Long getBookId() {
-    return bookId;
-  }
-
-  public void setBookId(Long bookId) {
-    this.bookId = bookId;
+  @Override
+  public String toString() {
+    return "BookRequest{" +
+        "title='" + title + '\'' +
+        ", isbn='" + isbn + '\'' +
+        ", subject='" + subject + '\'' +
+        ", publisher='" + publisher + '\'' +
+        ", language='" + language + '\'' +
+        ", numberOfPages=" + numberOfPages +
+        ", authorId=" + authorId +
+        ", items=" + items +
+        ", format=" + format +
+        ", barcode=" + barcode +
+        ", price=" + price +
+        ", publicationDate=" + publicationDate +
+        ", purchaseDate=" + purchaseDate +
+        '}';
   }
 
   public String getTitle() {
@@ -83,36 +89,12 @@ public class BookDO implements Serializable {
     this.numberOfPages = numberOfPages;
   }
 
-  public long getAuthor() {
-    return author;
+  public long getAuthorId() {
+    return authorId;
   }
 
-  public void setAuthor(long author) {
-    this.author = author;
-  }
-
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public Instant getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(Instant updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-  public int getVersion() {
-    return version;
-  }
-
-  public void setVersion(int version) {
-    this.version = version;
+  public void setAuthorId(long authorId) {
+    this.authorId = authorId;
   }
 
   public int getItems() {
@@ -161,28 +143,5 @@ public class BookDO implements Serializable {
 
   public void setPurchaseDate(LocalDate purchaseDate) {
     this.purchaseDate = purchaseDate;
-  }
-
-  @Override
-  public String toString() {
-    return "BookDO {" +
-        "bookId=" + bookId +
-        ", title='" + title + '\'' +
-        ", ISBN='" + isbn + '\'' +
-        ", subject='" + subject + '\'' +
-        ", publisher='" + publisher + '\'' +
-        ", language='" + language + '\'' +
-        ", numberOfPages=" + numberOfPages +
-        ", author=" + author +
-        ", createdAt=" + createdAt +
-        ", updatedAt=" + updatedAt +
-        ", version=" + version +
-        ", items=" + items +
-        ", format=" + format +
-        ", barcode=" + barcode +
-        ", price=" + price +
-        ", publicationDate=" + publicationDate +
-        ", purchaseDate=" + purchaseDate +
-        '}';
   }
 }

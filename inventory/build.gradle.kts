@@ -35,12 +35,14 @@ springBoot() {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 extra["springCloudGcpVersion"] = "6.1.1"
 extra["springCloudVersion"] = "2024.0.1"
 
 dependencies {
+	implementation("com.arch.commons:commons:1.0.0-SNAPSHOT")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("org.postgresql:postgresql")

@@ -1,6 +1,5 @@
 package com.arch.inventory.stream;
 
-import com.arch.commons.domain.BookDO;
 import com.arch.inventory.stream.data.BookItemData;
 import java.util.function.Consumer;
 
@@ -8,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.arch.commons.domain.BookDO;
 import com.arch.inventory.stream.repository.BookItemRepository;
 
 @Component

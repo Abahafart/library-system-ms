@@ -12,7 +12,8 @@ import com.arch.catalogue.application.ports.output.BookPersistenceManagement;
 import com.arch.catalogue.application.ports.output.BookStreamManagement;
 import com.arch.catalogue.application.usecases.BookManagement;
 import com.arch.catalogue.domain.AuthorDO;
-import com.arch.catalogue.domain.BookDO;
+import com.arch.commons.domain.BookDO;
+import com.arch.commons.domain.BookStatus;
 
 @Service
 public class BookManagementInputAdapter implements BookManagement {
@@ -35,6 +36,13 @@ public class BookManagementInputAdapter implements BookManagement {
     book.setAuthor(found.authorId());
     BookDO saved = persistenceManagement.save(book);
     saved.setAuthor(found.authorId());
+    saved.setStatus(BookStatus.AVAILABLE);
+    saved.setBarcode(book.getBarcode());
+    saved.setFormat(book.getFormat());
+    saved.setItems(book.getItems());
+    saved.setPrice(book.getPrice());
+    saved.setPublicationDate(book.getPublicationDate());
+    saved.setPurchaseDate(book.getPurchaseDate());
     streamManagement.notificationNewBook(saved);
     return saved;
   }

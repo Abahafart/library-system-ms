@@ -1,8 +1,7 @@
 package com.arch.catalogue.application.usecases;
 
+import com.arch.commons.domain.BookDO;
 import java.util.Map;
-
-import com.arch.catalogue.domain.BookDO;
 
 public interface BookManagement {
 

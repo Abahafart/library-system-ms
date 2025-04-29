@@ -1,6 +1,5 @@
 package com.arch.catalogue.framework.mapper;
 
-import com.arch.commons.domain.BookDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
