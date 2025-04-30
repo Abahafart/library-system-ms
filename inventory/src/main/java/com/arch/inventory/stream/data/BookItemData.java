@@ -1,5 +1,6 @@
 package com.arch.inventory.stream.data;
 
+import jakarta.persistence.EntityListeners;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -12,8 +13,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity(name = "book_items")
+@EntityListeners(AuditingEntityListener.class)
 public class BookItemData {
 
     @Id
@@ -137,5 +140,24 @@ public class BookItemData {
 
   public void setVersion(Integer version) {
     this.version = version;
+  }
+
+  @Override
+  public String toString() {
+    return "BookItemData{" +
+        "bookItemId=" + bookItemId +
+        ", bookId=" + bookId +
+        ", barcode='" + barcode + '\'' +
+        ", borrowed=" + borrowed +
+        ", dueDate=" + dueDate +
+        ", price=" + price +
+        ", bookFormat='" + bookFormat + '\'' +
+        ", status='" + status + '\'' +
+        ", purchaseDate=" + purchaseDate +
+        ", publicationDate=" + publicationDate +
+        ", createdAt=" + createdAt +
+        ", updatedAt=" + updatedAt +
+        ", version=" + version +
+        '}';
   }
 }
