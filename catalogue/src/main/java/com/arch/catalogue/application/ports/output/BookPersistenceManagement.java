@@ -1,6 +1,6 @@
 package com.arch.catalogue.application.ports.output;
 
-import com.arch.catalogue.domain.BookDO;
+import com.arch.commons.domain.BookDO;
 
 public interface BookPersistenceManagement {
 

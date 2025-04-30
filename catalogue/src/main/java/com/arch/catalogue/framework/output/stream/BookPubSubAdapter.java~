@@ -1,6 +1,5 @@
 package com.arch.catalogue.framework.output.stream;
 
-import com.arch.commons.domain.BookDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.function.StreamBridge;

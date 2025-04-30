@@ -1,0 +1,25 @@
+### add new book
+POST http://localhost:14102/books
+Content-Type: application/json
+
+{
+  "title": "test1",
+  "isbn": "test",
+  "subject": "test",
+  "publisher": "test",
+  "language": "Spanish",
+  "numberOfPages": 564,
+  "authorId": 1,
+  "items": 1,
+  "format": "PHYSICAL",
+  "barcode": "253641",
+  "price": "589.65",
+  "publicationDate": "2020-01-01",
+  "purchaseDate": "2025-01-01"
+}
+
+### get book by isbn
+GET http://localhost:14102/books?isbn=test
+
+### get total books
+GET http://localhost:14102/books/count

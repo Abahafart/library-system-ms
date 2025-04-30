@@ -1,6 +1,5 @@
 package com.arch.catalogue.domain.rest.request;
 
-import com.arch.commons.domain.BookFormat;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +16,7 @@ public class BookRequest implements Serializable {
   private int numberOfPages;
   private long authorId;
   private int items;
-  private BookFormat format;
+  private BOOK_FORMAT format;
   private String barcode;
   private BigDecimal price;
   private LocalDate publicationDate;
@@ -106,11 +105,11 @@ public class BookRequest implements Serializable {
     this.items = items;
   }
 
-  public BookFormat getFormat() {
+  public BOOK_FORMAT getFormat() {
     return format;
   }
 
-  public void setFormat(BookFormat format) {
+  public void setFormat(BOOK_FORMAT format) {
     this.format = format;
   }
 

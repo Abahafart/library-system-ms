@@ -1,45 +1,60 @@
-package com.arch.catalogue.domain.rest.request;
+package com.arch.domain;
 
-import com.arch.commons.domain.BookFormat;
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDate;
 
-import com.arch.catalogue.domain.enums.BOOK_FORMAT;
+public class BookDO {
 
-public class BookRequest implements Serializable {
-
+  private Long bookId;
   private String title;
   private String isbn;
   private String subject;
   private String publisher;
   private String language;
   private int numberOfPages;
-  private long authorId;
+  private long author;
+  private Instant createdAt;
+  private Instant updatedAt;
+  private int version;
   private int items;
   private BookFormat format;
   private String barcode;
   private BigDecimal price;
   private LocalDate publicationDate;
   private LocalDate purchaseDate;
+  private BookStatus status;
 
   @Override
   public String toString() {
-    return "BookRequest{" +
-        "title='" + title + '\'' +
-        ", isbn='" + isbn + '\'' +
-        ", subject='" + subject + '\'' +
-        ", publisher='" + publisher + '\'' +
-        ", language='" + language + '\'' +
+    return "BookDO{" +
+        "bookId=" + bookId +
+        ", title=" + title +
+        ", isbn=" + isbn +
+        ", subject=" + subject +
+        ", publisher=" + publisher +
+        ", language=" + language +
         ", numberOfPages=" + numberOfPages +
-        ", authorId=" + authorId +
+        ", author=" + author +
+        ", createdAt=" + createdAt +
+        ", updatedAt=" + updatedAt +
+        ", version=" + version +
         ", items=" + items +
         ", format=" + format +
         ", barcode=" + barcode +
         ", price=" + price +
         ", publicationDate=" + publicationDate +
         ", purchaseDate=" + purchaseDate +
+        ", status=" + status +
         '}';
+  }
+
+  public Long getBookId() {
+    return bookId;
+  }
+
+  public void setBookId(Long bookId) {
+    this.bookId = bookId;
   }
 
   public String getTitle() {
@@ -90,12 +105,36 @@ public class BookRequest implements Serializable {
     this.numberOfPages = numberOfPages;
   }
 
-  public long getAuthorId() {
-    return authorId;
+  public long getAuthor() {
+    return author;
   }
 
-  public void setAuthorId(long authorId) {
-    this.authorId = authorId;
+  public void setAuthor(long author) {
+    this.author = author;
+  }
+
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public Instant getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Instant updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+  public int getVersion() {
+    return version;
+  }
+
+  public void setVersion(int version) {
+    this.version = version;
   }
 
   public int getItems() {
@@ -145,4 +184,13 @@ public class BookRequest implements Serializable {
   public void setPurchaseDate(LocalDate purchaseDate) {
     this.purchaseDate = purchaseDate;
   }
+
+  public BookStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(BookStatus status) {
+    this.status = status;
+  }
+
 }
