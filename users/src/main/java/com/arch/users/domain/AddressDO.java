@@ -10,6 +10,7 @@ public class AddressDO {
   private String city;
   private String zipcode;
   private String country;
+  private String accountId;
   private Instant createdAt;
   private Instant updatedAt;
   private Integer version;
@@ -23,10 +24,19 @@ public class AddressDO {
         ", city=" + city +
         ", zipcode=" + zipcode +
         ", country=" + country +
+        ", accountId=" + accountId +
         ", createdAt=" + createdAt +
         ", updatedAt=" + updatedAt +
         ", version=" + version +
         '}';
+  }
+
+  public String getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
   }
 
   public String getId() {

@@ -10,7 +10,7 @@ public class AccountDO {
   private String password;
   private String role;
   private String name;
-  private String address;
+  private AddressDO address;
   private String phone;
   private AccountStatus status;
   private Instant createdAt;
@@ -74,11 +74,11 @@ public class AccountDO {
     this.name = name;
   }
 
-  public String getAddress() {
+  public AddressDO getAddress() {
     return address;
   }
 
-  public void setAddress(String address) {
+  public void setAddress(AddressDO address) {
     this.address = address;
   }
 

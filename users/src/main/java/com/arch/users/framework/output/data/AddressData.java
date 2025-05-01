@@ -11,13 +11,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class AddressData {
 
   @Id
-  private ObjectId id;
+  private String id;
   private String street;
   private String suite;
   private String city;
   private String zipcode;
   private String country;
-  private ObjectId accountId;
+  private String accountId;
   private AddressStatus status;
   private Instant createdAt;
   private Instant updatedAt;
@@ -49,11 +49,11 @@ public class AddressData {
     this.status = status;
   }
 
-  public ObjectId getAccountId() {
+  public String getAccountId() {
     return accountId;
   }
 
-  public void setAccountId(ObjectId accountId) {
+  public void setAccountId(String accountId) {
     this.accountId = accountId;
   }
 
@@ -97,11 +97,11 @@ public class AddressData {
     this.country = country;
   }
 
-  public ObjectId getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(ObjectId id) {
+  public void setId(String id) {
     this.id = id;
   }
 
