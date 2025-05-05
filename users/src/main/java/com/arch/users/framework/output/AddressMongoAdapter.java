@@ -1,5 +1,7 @@
 package com.arch.users.framework.output;
 
+import java.time.Instant;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
 import com.arch.users.application.ports.output.AddressPersistence;
@@ -23,21 +25,30 @@ public class AddressMongoAdapter implements AddressPersistence {
 
   @Override
   public Mono<AddressDO> save(Mono<AddressDO> address) {
-    return address.map(mapper::toEntity).flatMap(addressRepository::save).map(mapper::toModel);
+    return address.map(mapper::toEntity).flatMap(it -> {
+      it.setUpdatedAt(Instant.now());
+      it.setCreatedAt(Instant.now());
+      return addressRepository.save(it);
+    }).map(mapper::toModel);
   }
 
   @Override
   public Mono<AddressDO> findById(Mono<String> id) {
-    return null;
+    return id.map(ObjectId::new).flatMap(addressRepository::findById).map(mapper::toModel);
   }
 
   @Override
   public Mono<Void> deleteById(Mono<String> id) {
-    return null;
+    return id.map(ObjectId::new).flatMap(addressRepository::deleteById);
   }
 
   @Override
   public Flux<AddressDO> findAll() {
-    return null;
+    return addressRepository.findAll().map(mapper::toModel);
+  }
+
+  @Override
+  public Mono<AddressDO> findByAccountId(String accountId) {
+    return addressRepository.findByAccountId(accountId).map(mapper::toModel);
   }
 }

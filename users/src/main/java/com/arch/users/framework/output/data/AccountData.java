@@ -2,7 +2,6 @@ package com.arch.users.framework.output.data;
 
 import com.arch.commons.domain.AccountStatus;
 import java.time.Instant;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,6 +11,7 @@ public class AccountData {
 
   @Id
   private String id;
+  private String email;
   private String username;
   private String password;
   private String role;
@@ -33,6 +33,7 @@ public class AccountData {
         ", name=" + name +
         ", phone=" + phone +
         ", status=" + status +
+        ", email=" + email +
         ", createdAt=" + createdAt +
         ", updatedAt=" + updatedAt +
         ", version=" + version +
@@ -45,6 +46,14 @@ public class AccountData {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public String getUsername() {

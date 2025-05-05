@@ -15,7 +15,7 @@ import com.arch.users.framework.output.data.AddressData;
 public interface AddressMapper extends GeneralMapper<AddressDO, AddressData, AddressRequest, AddressResponse> {
     @Mapping(target = "createdAt", expression = "java(toMexicoCityTimeString(addressDO.getCreatedAt()))")
     @Mapping(target = "updatedAt", expression = "java(toMexicoCityTimeString(addressDO.getUpdatedAt()))")
-    AddressResponse toResponse(AddressDO addressDO);
+    AddressResponse fromDomain(AddressDO addressDO);
 
     default String toMexicoCityTimeString(Instant instant) {
         if (instant == null) return null;

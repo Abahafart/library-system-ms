@@ -11,5 +11,7 @@ public interface AccountManagement {
   Flux<AccountDO> findAll();
   Mono<AccountDO> findById(Mono<String> id);
   Mono<Void> deleteById(Mono<String> id);
-
+  Mono<AccountDO> findByEmail(Mono<String> email);
+  Mono<AccountDO> findByUsername(Mono<String> username);
+  Flux<AccountDO> findByName(Mono<String> name);
 }

@@ -14,5 +14,6 @@ public interface AddressPersistence {
   Mono<Void> deleteById(Mono<String> id);
 
   Flux<AddressDO> findAll();
+  Mono<AddressDO> findByAccountId(String accountId);
 
 }

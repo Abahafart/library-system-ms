@@ -1,13 +1,16 @@
-package com.arch.users.domain.rest.response;
+package com.arch.users.framework.output.data;
 
 import com.arch.commons.domain.AccountStatus;
-import java.io.Serializable;
 import java.time.Instant;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class AccountResponse implements Serializable {
+@Document(collection = "accounts")
+public class AccountData {
 
+  @Id
   private String id;
-  private AddressResponse address;
   private String email;
   private String username;
   private String password;
@@ -15,22 +18,22 @@ public class AccountResponse implements Serializable {
   private String name;
   private String phone;
   private AccountStatus status;
-  private String createdAt;
-  private String updatedAt;
+  private Instant createdAt;
+  private Instant updatedAt;
+  @Version
   private Integer version;
 
   @Override
   public String toString() {
-    return "AccountResponse{" +
+    return "AccountData{" +
         "id=" + id +
-        ", address=" + address +
-        ", email=" + email +
         ", username=" + username +
         ", password=" + password +
         ", role=" + role +
         ", name=" + name +
         ", phone=" + phone +
         ", status=" + status +
+        ", email=" + email +
         ", createdAt=" + createdAt +
         ", updatedAt=" + updatedAt +
         ", version=" + version +
@@ -43,22 +46,6 @@ public class AccountResponse implements Serializable {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public AddressResponse getAddress() {
-    return address;
-  }
-
-  public void setAddress(AddressResponse address) {
-    this.address = address;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public String getUsername() {
@@ -109,19 +96,19 @@ public class AccountResponse implements Serializable {
     this.status = status;
   }
 
-  public String getCreatedAt() {
+  public Instant getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(String createdAt) {
+  public void setCreatedAt(Instant createdAt) {
     this.createdAt = createdAt;
   }
 
-  public String getUpdatedAt() {
+  public Instant getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(String updatedAt) {
+  public void setUpdatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -131,5 +118,13 @@ public class AccountResponse implements Serializable {
 
   public void setVersion(Integer version) {
     this.version = version;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

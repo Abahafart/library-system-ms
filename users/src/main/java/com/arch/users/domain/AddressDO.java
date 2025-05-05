@@ -110,4 +110,76 @@ public class AddressDO {
   public void setVersion(Integer version) {
     this.version = version;
   }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  public static class Builder {
+    private String id;
+    private String street;
+    private String suite;
+    private String city;
+    private String zipcode;
+    private String country;
+    private String accountId;
+    private Instant createdAt;
+    private Instant updatedAt;
+    private Integer version;
+
+    public Builder id(String id) {
+      this.id = id;
+      return this;
+    }
+    public Builder street(String street) {
+      this.street = street;
+      return this;
+    }
+    public Builder suite(String suite) {
+      this.suite = suite;
+      return this;
+    }
+    public Builder city(String city) {
+      this.city = city;
+      return this;
+    }
+    public Builder zipcode(String zipcode) {
+      this.zipcode = zipcode;
+      return this;
+    }
+    public Builder country(String country) {
+      this.country = country;
+      return this;
+    }
+    public Builder accountId(String accountId) {
+      this.accountId = accountId;
+      return this;
+    }
+    public Builder createdAt(Instant createdAt) {
+      this.createdAt = createdAt;
+      return this;
+    }
+    public Builder updatedAt(Instant updatedAt) {
+      this.updatedAt = updatedAt;
+      return this;
+    }
+    public Builder version(Integer version) {
+      this.version = version;
+      return this;
+    }
+    public AddressDO build() {
+      AddressDO address = new AddressDO();
+      address.setId(id);
+      address.setStreet(street);
+      address.setSuite(suite);
+      address.setCity(city);
+      address.setZipcode(zipcode);
+      address.setCountry(country);
+      address.setAccountId(accountId);
+      address.setCreatedAt(createdAt);
+      address.setUpdatedAt(updatedAt);
+      address.setVersion(version);
+      return address;
+    }
+  }
 }
