@@ -1,12 +1,10 @@
 package com.arch.users.framework.mappers;
 
 import com.arch.users.domain.AccountDO;
-import com.arch.users.domain.LibraryCardDO;
 import com.arch.users.domain.rest.request.AccountRequest;
 import com.arch.users.domain.rest.response.AccountResponse;
 import com.arch.users.framework.configuration.MappingConfig;
 import com.arch.users.framework.output.data.AccountData;
-import com.arch.users.framework.output.data.LibraryCardData;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.time.Instant;
