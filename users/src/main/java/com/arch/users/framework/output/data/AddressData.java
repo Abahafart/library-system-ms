@@ -2,7 +2,6 @@ package com.arch.users.framework.output.data;
 
 import com.arch.commons.domain.AddressStatus;
 import java.time.Instant;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
