@@ -1,0 +1,81 @@
+package com.arch.users.framework.output;
+
+import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import com.arch.users.application.ports.output.AccountPersistence;
+import com.arch.users.domain.AccountDO;
+import com.arch.users.framework.mappers.AccountMapper;
+import com.arch.users.framework.output.data.AccountData;
+import com.arch.users.framework.output.repository.AccountRepository;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Repository
+public class AccountMongoAdapter implements AccountPersistence {
+
+  private static final Logger log = LoggerFactory.getLogger(AccountMongoAdapter.class);
+  private final AccountMapper mapper;
+  private final AccountRepository accountRepository;
+
+  public AccountMongoAdapter(AccountMapper mapper, AccountRepository accountRepository) {
+    this.mapper = mapper;
+    this.accountRepository = accountRepository;
+  }
+
+  @Override
+  public Mono<AccountDO> save(Mono<AccountDO> account) {
+    return account.map(mapper::toEntity)
+        .flatMap(accountRepository::save)
+        .map(mapper::toModel);
+  }
+
+  @Override
+  public Flux<AccountDO> findAll() {
+    return accountRepository.findAll().map(mapper::toModel);
+  }
+
+  @Override
+  public Mono<AccountDO> findById(Mono<String> id) {
+    return id.map(ObjectId::new).flatMap(it -> {
+      Mono<AccountData> byId = accountRepository.findById(it);
+      byId.log().subscribe(it1 -> log.info("Account found: {}", it1));
+      return byId;
+    }).map(it -> AccountDO.builder()
+        .id(it.getId())
+        .email(it.getEmail())
+        .username(it.getUsername())
+        .password(it.getPassword())
+        .role(it.getRole())
+        .name(it.getName())
+        .phone(it.getPhone())
+        .status(it.getStatus())
+        .createdAt(it.getCreatedAt())
+        .updatedAt(it.getUpdatedAt())
+        .version(it.getVersion())
+        .build());
+  }
+
+  @Override
+  public Mono<Void> deleteById(Mono<String> id) {
+    return id.map(ObjectId::new).flatMap(accountRepository::deleteById);
+  }
+
+  @Override
+  public Mono<AccountDO> findByEmail(Mono<String> email) {
+    return email.flatMap(accountRepository::findByEmail).map(mapper::toModel);
+  }
+
+  @Override
+  public Mono<AccountDO> findByUsername(Mono<String> username) {
+    return username.flatMap(accountRepository::findByUsername).map(mapper::toModel);
+  }
+
+  @Override
+  public Flux<AccountDO> findByName(Mono<String> name) {
+    return name.flatMapMany(accountRepository::findByName).map(mapper::toModel);
+  }
+}

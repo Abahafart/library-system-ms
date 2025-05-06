@@ -1,0 +1,76 @@
+package com.arch.users.application.ports.input;
+
+import com.arch.users.application.AccountManagement;
+import com.arch.users.application.ports.output.AccountPersistence;
+import com.arch.users.application.ports.output.AddressPersistence;
+import com.arch.users.domain.AccountDO;
+import com.arch.users.domain.AddressDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Service
+public class AccountManagementInputPort implements AccountManagement {
+
+  private static final Logger log = LoggerFactory.getLogger(AccountManagementInputPort.class);
+  private final AccountPersistence accountPersistence;
+  private final AddressPersistence addressPersistence;
+
+  public AccountManagementInputPort(AccountPersistence accountPersistence,
+      AddressPersistence addressPersistence) {
+    this.accountPersistence = accountPersistence;
+    this.addressPersistence = addressPersistence;
+  }
+
+  @Override
+  public Mono<AccountDO> save(Mono<AccountDO> account) {
+    return accountPersistence.save(account).flatMap(it -> {
+      account.subscribe(acc -> {
+        acc.getAddress().setAccountId(it.getId());
+        it.setAddress(acc.getAddress());
+      });
+      return addressPersistence.save(Mono.just(it.getAddress())).map(it2 -> {
+        it.setAddress(it2);
+        return it;
+      });
+    });
+  }
+
+  @Override
+  public Flux<AccountDO> findAll() {
+    return accountPersistence.findAll();
+  }
+
+  @Override
+  public Mono<AccountDO> findById(Mono<String> id) {
+    return accountPersistence.findById(id).flatMap(it ->
+        addressPersistence.findByAccountId(it.getId())
+            .defaultIfEmpty(AddressDO.builder().build())
+            .map(it2 -> {
+              it.setAddress(it2);
+              return it;
+            }));
+  }
+
+  @Override
+  public Mono<Void> deleteById(Mono<String> id) {
+    return accountPersistence.deleteById(id);
+  }
+
+  @Override
+  public Mono<AccountDO> findByEmail(Mono<String> email) {
+    return accountPersistence.findByEmail(email);
+  }
+
+  @Override
+  public Mono<AccountDO> findByUsername(Mono<String> username) {
+    return accountPersistence.findByUsername(username);
+  }
+
+  @Override
+  public Flux<AccountDO> findByName(Mono<String> name) {
+    return accountPersistence.findByName(name);
+  }
+}

@@ -147,12 +147,12 @@ public class BookItemData {
     return "BookItemData{" +
         "bookItemId=" + bookItemId +
         ", bookId=" + bookId +
-        ", barcode=" + barcode +
+        ", barcode='" + barcode + '\'' +
         ", borrowed=" + borrowed +
         ", dueDate=" + dueDate +
         ", price=" + price +
-        ", bookFormat=" + bookFormat +
-        ", status=" + status +
+        ", bookFormat='" + bookFormat + '\'' +
+        ", status='" + status + '\'' +
         ", purchaseDate=" + purchaseDate +
         ", publicationDate=" + publicationDate +
         ", createdAt=" + createdAt +
