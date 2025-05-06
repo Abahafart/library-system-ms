@@ -17,15 +17,22 @@ public class AccountManagementInputPort implements AccountManagement {
   private static final Logger log = LoggerFactory.getLogger(AccountManagementInputPort.class);
   private final AccountPersistence accountPersistence;
   private final AddressPersistence addressPersistence;
+  private final PasswordHasManagementInputPort passwordManagement;
 
   public AccountManagementInputPort(AccountPersistence accountPersistence,
-      AddressPersistence addressPersistence) {
+      AddressPersistence addressPersistence,
+      PasswordHasManagementInputPort passwordManagement) {
     this.accountPersistence = accountPersistence;
     this.addressPersistence = addressPersistence;
+    this.passwordManagement = passwordManagement;
   }
 
   @Override
   public Mono<AccountDO> save(Mono<AccountDO> account) {
+    account.subscribe(it -> {
+      it.setPassword(passwordManagement.hash(it.getPassword()));
+      log.info("hashed");
+    });
     return accountPersistence.save(account).flatMap(it -> {
       account.subscribe(acc -> {
         acc.getAddress().setAccountId(it.getId());
@@ -35,6 +42,7 @@ public class AccountManagementInputPort implements AccountManagement {
       return addressPersistence.save(Mono.just(it.getAddress())).map(it2 -> {
         it.setAddress(it2);
         log.info("Address saved: {}", it2);
+        it.setPassword("");
         return it;
       });
     });
@@ -42,7 +50,10 @@ public class AccountManagementInputPort implements AccountManagement {
 
   @Override
   public Flux<AccountDO> findAll() {
-    return accountPersistence.findAll();
+    return accountPersistence.findAll().map(it -> {
+      it.setPassword("");
+      return it;
+    });
   }
 
   @Override
@@ -52,6 +63,7 @@ public class AccountManagementInputPort implements AccountManagement {
             .defaultIfEmpty(AddressDO.builder().build())
             .map(it2 -> {
               it.setAddress(it2);
+              it.setPassword("");
               return it;
             }));
   }
@@ -63,16 +75,25 @@ public class AccountManagementInputPort implements AccountManagement {
 
   @Override
   public Mono<AccountDO> findByEmail(Mono<String> email) {
-    return accountPersistence.findByEmail(email);
+    return accountPersistence.findByEmail(email).map(it -> {
+      it.setPassword("");
+      return it;
+    });
   }
 
   @Override
   public Mono<AccountDO> findByUsername(Mono<String> username) {
-    return accountPersistence.findByUsername(username);
+    return accountPersistence.findByUsername(username).map(it -> {
+      it.setPassword("");
+      return it;
+    });
   }
 
   @Override
   public Flux<AccountDO> findByName(Mono<String> name) {
-    return accountPersistence.findByName(name);
+    return accountPersistence.findByName(name).map(it -> {
+      it.setPassword("");
+      return it;
+    });
   }
 }
