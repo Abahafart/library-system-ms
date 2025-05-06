@@ -1,4 +1,4 @@
-###create new record
+###create admin account
 POST http://localhost:8080/accounts
 Content-Type: application/json
 
@@ -6,7 +6,29 @@ Content-Type: application/json
   "email": "amirandaf@me.com",
   "username": "amirandaf",
   "password": "test",
-  "role": "admin",
+  "role": "ADMIN",
+  "name": "alfredo",
+  "phone": "555555555",
+  "address": {
+    "street": "Mario Pani",
+    "city": "CDMX",
+    "state": "CDMX",
+    "zipcode": "14000",
+    "suite": "101",
+    "country": "MX"
+  },
+  "status": "ACTIVE"
+}
+
+###create user account
+POST http://localhost:8080/accounts
+Content-Type: application/json
+
+{
+  "email": "amirandaf@me.com",
+  "username": "amirandaf",
+  "password": "test",
+  "role": "USER",
   "name": "alfredo",
   "phone": "555555555",
   "address": {

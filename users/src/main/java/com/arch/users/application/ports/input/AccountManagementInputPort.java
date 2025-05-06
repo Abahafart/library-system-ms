@@ -29,10 +29,12 @@ public class AccountManagementInputPort implements AccountManagement {
     return accountPersistence.save(account).flatMap(it -> {
       account.subscribe(acc -> {
         acc.getAddress().setAccountId(it.getId());
+        log.info("AccountId set: {}", it.getId());
         it.setAddress(acc.getAddress());
       });
       return addressPersistence.save(Mono.just(it.getAddress())).map(it2 -> {
         it.setAddress(it2);
+        log.info("Address saved: {}", it2);
         return it;
       });
     });
