@@ -47,6 +47,7 @@ public class AccountManagementInputPort implements AccountManagement {
   public Mono<AccountDO> findById(Mono<String> id) {
     return accountPersistence.findById(id).flatMap(it ->
         addressPersistence.findByAccountId(it.getId())
+            .defaultIfEmpty(AddressDO.builder().build())
             .map(it2 -> {
               it.setAddress(it2);
               return it;
